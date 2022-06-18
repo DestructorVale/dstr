@@ -4,20 +4,42 @@ using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
-    public float moveSpeed = 5f;
+    bool isLeft = false;
+    bool isRight = false;
 
     public Rigidbody2D rb;
+    public float speedForce;
 
-    Vector2 movement;
-
-    // Update is called once per frame
-    void Update()
+    public void clickLeft()
     {
-        movement.x = Input.GetAxisRaw("Horizontal");
-        movement.y = Input.GetAxisRaw("Vertical");
+        isLeft = true;
     }
-    void FixedUpdate()
+
+    public void releaseLeft()
     {
-        rb.MovePosition(rb.position + movement * moveSpeed * Time.fixedDeltaTime);
+        isLeft = false;
+    }
+
+    public void clickRight()
+    {
+        isRight = true;
+    }
+
+    public void releaseRight()
+    {
+        isRight = false;
+    }
+
+    private void FixedUpdate()
+    {
+        if (isLeft)
+        {
+            rb.AddForce(new Vector2(-speedForce, 0) * Time.deltaTime);
+        }
+
+        if (isRight)
+        {
+            rb.AddForce(new Vector2(speedForce, 0) * Time.deltaTime);
+        }
     }
 }
