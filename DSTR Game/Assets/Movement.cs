@@ -35,11 +35,13 @@ public class Movement : MonoBehaviour
         if (isLeft)
         {
             rb.AddForce(new Vector2(-speedForce, 0) * Time.deltaTime);
+            //transform.Rotate(new Vector3(0f, 0f, 240f) * Time.deltaTime);
         }
 
         if (isRight)
         {
             rb.AddForce(new Vector2(speedForce, 0) * Time.deltaTime);
+            //transform.Rotate(new Vector3(0f, 0f, -240f) * Time.deltaTime);
         }
     }
 }
